@@ -6,5 +6,5 @@ tags: Fusion 360, Compliant Mechanism, 3D-Druck
 link: https://www.linkedin.com/
 linktext: Auf LinkedIn ansehen
 featured: ja
-bilder: shroom_horizontal.png
+bilder: Objekt 2.png, Objekt 3.png, Objekt 4.png
 beschreibung: Modernes Pilzmesser mit ein- und ausfahrbarer Reinigungsbürste im Griffende. Der Mechanismus ist ein Compliant Mechanism – Bewegung und Haltekraft entstehen allein durch elastisches Biegen des Materials, ganz ohne Gelenke, Federn oder Schrauben. Dadurch komplett am Stück druckbar, wartungsfrei und zuverlässig.
