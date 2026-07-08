@@ -1,0 +1,36 @@
+# ============================================================
+#  VORLAGE FÜR EIN NEUES PROJEKT
+# ------------------------------------------------------------
+#  So legst du ein neues Projekt an:
+#   1. Diesen Ordner "_Vorlage" kopieren und umbenennen,
+#      z.B. in "Projekt_6".
+#   2. Deine Bilder in den neuen Ordner legen.
+#   3. Diese Datei ausfüllen (die Werte hinter dem Doppelpunkt).
+#   4. Den Ordnernamen in "projekte/liste.txt" ergänzen.
+#
+#  Zeilen, die mit # beginnen, werden ignoriert.
+# ============================================================
+
+titel: Titel des Projekts
+untertitel: Kurzform oder Typ
+kategorie: Software
+jahr: 2026
+
+# Stichworte mit Komma trennen:
+tags: Stichwort A, Stichwort B, Stichwort C
+
+# Optionaler Link (leer lassen = kein Link):
+link: 
+linktext: Ansehen
+
+# "ja" macht dieses Projekt zum großen Block ganz oben.
+# Nur EIN Projekt sollte featured: ja haben.
+featured: nein
+
+# Bilddateien in DIESEM Ordner, mit Komma getrennt.
+# Das erste Bild ist das Hauptbild. Leer lassen = Platzhalter-Kachel.
+bilder: mein_bild.png
+
+# Beschreibung (1–3 Sätze). Alles ab hier bis zum Dateiende
+# gehört zur Beschreibung, darf also auch mehrzeilig sein.
+beschreibung: Was ist das Projekt, welches Problem löst es, was war die Herausforderung und was hast du eingesetzt?

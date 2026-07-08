@@ -1,0 +1,10 @@
+# Reihenfolge der Projekte – oben = zuerst auf der Seite.
+# Neues Projekt: Ordner unter "projekte/" anlegen (z.B. Projekt_6),
+# darin eine projekt.txt + Bilder ablegen, und den Ordnernamen hier
+# in einer neuen Zeile ergänzen. Zeilen mit # werden ignoriert.
+
+Projekt_1
+Projekt_2
+Projekt_3
+Projekt_4
+Projekt_5
