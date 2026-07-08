@@ -1,0 +1,10 @@
+titel: SHROOM IT!
+untertitel: Pilzmesser mit ausfahrbarer Bürste
+kategorie: Produktdesign · 3D-Druck
+jahr: 2026
+tags: Fusion 360, Compliant Mechanism, 3D-Druck
+link: https://www.linkedin.com/
+linktext: Auf LinkedIn ansehen
+featured: ja
+bilder: shroom_horizontal.png
+beschreibung: Modernes Pilzmesser mit ein- und ausfahrbarer Reinigungsbürste im Griffende. Der Mechanismus ist ein Compliant Mechanism – Bewegung und Haltekraft entstehen allein durch elastisches Biegen des Materials, ganz ohne Gelenke, Federn oder Schrauben. Dadurch komplett am Stück druckbar, wartungsfrei und zuverlässig.
