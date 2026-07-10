@@ -4,7 +4,10 @@ Statische Website – **kein Server, kein Backend, keine Build-Tools**. Die Proj
 
 ```
 site/
-├─ index.html          ← die Seite (Code muss man nicht anfassen)
+├─ index.html          ← Startseite (Featured-Block, Filter, Kachel-Raster)
+├─ projekt.html        ← Detailseite für ein einzelnes Projekt (?p=Ordnername)
+├─ style.css            ← gesamtes Design, von beiden Seiten genutzt
+├─ common.js            ← gemeinsame Lade-/Parse-Logik, von beiden Seiten genutzt
 └─ projekte/
    ├─ liste.txt        ← Reihenfolge & welche Ordner es gibt
    ├─ _Vorlage/        ← Kopiervorlage für neue Projekte
@@ -16,6 +19,8 @@ site/
    │  └─ projekt.txt
    └─ ...
 ```
+
+Jede Kachel im Raster zeigt nur das erste Bild und verlinkt auf `projekt.html?p=<Ordnername>` – dort werden Titel, volle Beschreibung und **alle** Bilder des Projekts angezeigt. Der Featured-Block auf der Startseite zeigt weiterhin alle Bilder direkt an.
 
 ## Neues Projekt hinzufügen (3 Schritte)
 
@@ -52,8 +57,8 @@ Ein Browser darf aus Sicherheitsgründen **keine Ordner durchsuchen** – er kan
 ## Name, Bio & Farbe anpassen
 
 - **Name / Untertitel / Bio:** in `index.html` im HTML unter `hero`, `split` bzw. `about`.
-- **Akzentfarbe:** oben im `<style>` unter `:root` den Wert `--red` ändern (z. B. `#2547d8` für Blau).
-- **Links (LinkedIn, E-Mail):** in `index.html` nach `linkedin.com` bzw. `mailto:` suchen.
+- **Akzentfarbe:** in `style.css` oben unter `:root` den Wert `--red` ändern (z. B. `#2547d8` für Blau) – gilt automatisch für beide Seiten.
+- **Links (LinkedIn, E-Mail):** in `index.html` und `projekt.html` (Footer) nach `linkedin.com` bzw. `mailto:` suchen.
 
 ## Lokal ansehen (wichtig!)
 
