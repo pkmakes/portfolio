@@ -66,8 +66,8 @@
   .featured .tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
   .featured .tag{font:500 10px var(--mono);letter-spacing:.04em;padding:5px 10px;border:1.5px solid var(--ink)}
   .featured .cta{font:600 13px var(--sans);text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:3px}
-  .featured .img{flex:1 1 380px;background:var(--panel);display:flex;align-items:center;justify-content:center;padding:44px;min-height:340px}
-  .featured .img img{width:100%;max-height:300px;object-fit:contain;filter:drop-shadow(0 16px 22px rgba(0,0,0,.16))}
+  .featured .img{flex:1 1 380px;background:var(--panel);display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;padding:44px;min-height:340px}
+  .featured .img img{flex:1 1 0;min-width:110px;max-width:100%;max-height:280px;object-fit:contain;filter:drop-shadow(0 16px 22px rgba(0,0,0,.16))}
   .featured .img .plabel{font:700 32px/.95 var(--sans);letter-spacing:-.02em;color:#bdb9ac;text-align:center}
 
   .filterbar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;padding:22px 32px}
@@ -82,8 +82,8 @@
   .card .top{display:flex;align-items:baseline;justify-content:space-between}
   .card .top .n{font:700 56px/.8 var(--sans);letter-spacing:-.04em}
   .card .top .cat{font:500 10px var(--mono);letter-spacing:.06em;color:var(--red);text-align:right}
-  .card .thumb{aspect-ratio:16/9;border:1.5px solid var(--ink);overflow:hidden;background:var(--panel)}
-  .card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .card .thumb{aspect-ratio:16/9;border:1.5px solid var(--ink);overflow:hidden;background:var(--panel);display:flex;gap:2px}
+  .card .thumb img{flex:1 1 0;min-width:0;width:100%;height:100%;object-fit:cover;display:block}
   .card .ph{aspect-ratio:16/9;background:var(--panel);border:1.5px solid var(--ink);display:flex;flex-direction:column;justify-content:flex-end;padding:14px;position:relative}
   .card .ph .sq{position:absolute;top:12px;right:12px;width:14px;height:14px;background:var(--red)}
   .card .ph .plabel{font:700 26px/.95 var(--sans);letter-spacing:-.02em;color:#bdb9ac}
@@ -219,8 +219,8 @@ function renderFeatured(p){
   if(!p){ featuredEl.style.display = "none"; return; }
   const tags = (p.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join("");
   const cta = p.link ? `<a class="cta" href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.linkText||"Ansehen")} →</a>` : "";
-  const img = p.image
-    ? `<img src="${esc(p.image)}" alt="${esc(p.title)}">`
+  const img = (p.images && p.images.length)
+    ? p.images.map(src => `<img src="${esc(src)}" alt="${esc(p.title)}">`).join("")
     : `<span class="plabel">${esc(p.subtitle||p.title)}</span>`;
   featuredEl.innerHTML = `
     <div class="txt">
@@ -257,8 +257,8 @@ function renderFilters(){
 
 function renderGrid(){
   grid.innerHTML = currentList().map(p => {
-    const thumb = p.image
-      ? `<div class="thumb"><img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy"></div>`
+    const thumb = (p.images && p.images.length)
+      ? `<div class="thumb">${p.images.map(src => `<img src="${esc(src)}" alt="${esc(p.title)}" loading="lazy">`).join("")}</div>`
       : `<div class="ph"><span class="sq"></span><span class="plabel">${esc(p.subtitle||p.title)}</span></div>`;
     const tags = (p.tags||[]).map(t => `<span class="ctag">${esc(t)}</span>`).join("");
     const link = p.link ? `<a class="clink" href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.linkText||"Ansehen")} →</a>` : "";
