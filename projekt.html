@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pagetitle">Projekt – Philipp Kautz</title>
+<meta name="description" id="pagedesc" content="Projekt von Philipp Kautz.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="frame">
+
+  <div class="topbar row-b">
+    <a class="back" href="index.html">← ZURÜCK</a>
+    <span class="avail">● VERFÜGBAR FÜR PROJEKTE</span>
+  </div>
+
+  <!-- Wird per JS aus der jeweiligen projekt.txt befüllt -->
+  <div id="detail"></div>
+
+  <footer>
+    <span class="big">Let's build.</span>
+    <div class="flinks">
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LINKEDIN ↗</a>
+      <a href="mailto:philippkautz@gmail.com">E-MAIL ↗</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="common.js"></script>
+<script>
+/* =============================================================
+   PROJEKT-DETAILSEITE
+   -------------------------------------------------------------
+   Wird aufgerufen als projekt.html?p=Projekt_1 (Ordnername).
+   Lädt die passende projekt.txt + alle Bilder aus dem Ordner
+   und zeigt die volle Fallstudie inkl. aller Bilder.
+   ============================================================= */
+
+const detailEl = document.getElementById('detail');
+
+function showNotFound(){
+  detailEl.innerHTML = '<div class="notice">Dieses Projekt konnte nicht geladen werden.<br><br>Entweder stimmt der Ordnername in der Adresse nicht, oder die Seite wurde per <b>Doppelklick</b> (file://) geöffnet – der Browser darf dann keine Ordner-Dateien lesen.<br><br>Öffne die Seite über <b>GitHub Pages</b> oder einen kleinen lokalen Server im Ordner <code>site/</code>:<br><br><code>python -m http.server</code><br><br>und dann <code>http://localhost:8000</code> aufrufen.</div>';
+}
+
+function renderDetail(p){
+  document.title = p.title + ' – Philipp Kautz';
+  const descMeta = document.getElementById('pagedesc');
+  if(descMeta) descMeta.setAttribute('content', (p.desc || p.subtitle || p.title));
+
+  const tags = (p.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join("");
+  const cta = p.link ? `<a class="cta" href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.linkText||"Ansehen")} →</a>` : "";
+  const gallery = (p.images && p.images.length)
+    ? `<div class="gallery">${p.images.map(src => `<img src="${esc(src)}" alt="${esc(p.title)}" loading="lazy">`).join("")}</div>`
+    : "";
+
+  detailEl.innerHTML = `
+    <div class="detail row-b">
+      <div class="dkicker">${esc(p.category)}${p.year ? ' · ' + esc(p.year) : ''}</div>
+      <h1>${esc(p.title)}</h1>
+      <div class="sub">${esc(p.subtitle||"")}</div>
+      <div class="tags">${tags}</div>
+      <p class="desc">${esc(p.desc||"")}</p>
+      ${cta}
+    </div>
+    ${gallery}`;
+}
+
+async function load(){
+  const params = new URLSearchParams(location.search);
+  const folder = params.get('p');
+  if(!folder){ showNotFound(); return; }
+  try{
+    const txt = await fetch("projekte/" + folder + "/projekt.txt").then(r => { if(!r.ok) throw 0; return r.text(); });
+    const p = parseProjekt(txt, folder);
+    if(!p.title) throw 0;
+    renderDetail(p);
+  }catch(e){
+    showNotFound();
+  }
+}
+
+load();
+</script>
+</body>
+</html>

@@ -8,100 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  /* =========================================================
-     FARBE ANPASSEN: einfach --red unten ändern.
-     ========================================================= */
-  :root{
-    --red:#e5401f;      /* Akzentfarbe */
-    --ink:#141310;      /* Schrift / Linien */
-    --paper:#eceae1;    /* Hintergrund */
-    --panel:#e0ddd2;    /* Bildflächen */
-    --dim:#6f6b60;      /* gedämpfte Schrift */
-    --mono:'IBM Plex Mono',ui-monospace,monospace;
-    --sans:'Space Grotesk',system-ui,sans-serif;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-  a{color:inherit}
-  button{font-family:inherit}
-
-  .frame{max-width:1180px;margin:28px auto;border:2px solid var(--ink);background:var(--paper);box-shadow:0 26px 70px rgba(0,0,0,.14)}
-  .row-b{border-bottom:2px solid var(--ink)}
-
-  .topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 32px;font:500 11px var(--mono);letter-spacing:.1em}
-  .topbar .avail{color:var(--red)}
-
-  .hero{padding:52px 32px 36px}
-  .hero .kicker{font:500 11px var(--mono);letter-spacing:.1em;color:var(--dim);margin-bottom:26px}
-  .hero h1{font:700 clamp(52px,11vw,116px)/.9 var(--sans);letter-spacing:-.045em}
-  .hero h1 .dot{color:var(--red)}
-
-  .split{display:flex;flex-wrap:wrap}
-  .split .a{flex:2 1 380px;padding:30px 32px;border-right:2px solid var(--ink)}
-  .split .a p{font:500 22px/1.35 var(--sans);max-width:520px}
-  .split .b{flex:1 1 250px;padding:30px 32px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-  .btn{background:var(--ink);color:var(--paper);padding:15px 24px;font:600 14px var(--sans);text-decoration:none;transition:background .15s}
-  .btn:hover{background:var(--red)}
-  .link-u{font:500 12px var(--mono);letter-spacing:.06em;text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:2px}
-
-  .about{display:flex;flex-wrap:wrap}
-  .about .a{flex:1 1 250px;padding:36px 32px;border-right:2px solid var(--ink)}
-  .about .a .lbl{font:500 11px var(--mono);letter-spacing:.1em;color:var(--red);margin-bottom:16px}
-  .about .a h2{font:700 40px/.94 var(--sans);letter-spacing:-.03em}
-  .about .b{flex:2 1 420px;padding:36px 32px}
-  .about .b p{font:500 19px/1.45 var(--sans);max-width:580px;margin-bottom:24px}
-  .about .b p .em{color:var(--red)}
-  .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chip{font:500 10px var(--mono);letter-spacing:.06em;padding:7px 13px;border:1.5px solid var(--ink)}
-
-  .featured{display:flex;flex-wrap:wrap}
-  .featured .txt{flex:1 1 380px;padding:38px 32px;border-right:2px solid var(--ink)}
-  .featured .idx{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
-  .featured .idx .n{font:700 84px/.8 var(--sans);letter-spacing:-.04em;color:var(--red)}
-  .featured .idx .meta{font:500 11px var(--mono);letter-spacing:.08em}
-  .featured h2{font:700 42px/.98 var(--sans);letter-spacing:-.03em;margin-bottom:8px}
-  .featured .sub{font:500 15px var(--sans);color:var(--dim);margin-bottom:18px}
-  .featured .desc{font:400 15px/1.55 var(--sans);margin-bottom:22px;white-space:pre-line}
-  .featured .tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
-  .featured .tag{font:500 10px var(--mono);letter-spacing:.04em;padding:5px 10px;border:1.5px solid var(--ink)}
-  .featured .cta{font:600 13px var(--sans);text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:3px}
-  .featured .img{flex:1 1 380px;background:var(--panel);display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;padding:44px;min-height:340px}
-  .featured .img img{flex:1 1 0;min-width:110px;max-width:100%;max-height:280px;object-fit:contain;filter:drop-shadow(0 16px 22px rgba(0,0,0,.16))}
-  .featured .img .plabel{font:700 32px/.95 var(--sans);letter-spacing:-.02em;color:#bdb9ac;text-align:center}
-
-  .filterbar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;padding:22px 32px}
-  .fbtn{font:500 11px var(--mono);letter-spacing:.06em;padding:9px 15px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:background .12s,color .12s}
-  .fbtn:hover{background:var(--panel)}
-  .fbtn.on{background:var(--ink);color:var(--paper)}
-  .count{margin-left:auto;font:500 11px var(--mono);letter-spacing:.06em;color:var(--dim)}
-
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
-  .card{padding:32px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);display:flex;flex-direction:column;gap:14px;background:var(--paper);transition:background .15s}
-  .card:hover{background:#e4e1d6}
-  .card .top{display:flex;align-items:baseline;justify-content:space-between}
-  .card .top .n{font:700 56px/.8 var(--sans);letter-spacing:-.04em}
-  .card .top .cat{font:500 10px var(--mono);letter-spacing:.06em;color:var(--red);text-align:right}
-  .card .thumb{aspect-ratio:16/9;border:1.5px solid var(--ink);overflow:hidden;background:var(--panel);display:flex;gap:2px}
-  .card .thumb img{flex:1 1 0;min-width:0;width:100%;height:100%;object-fit:cover;display:block}
-  .card .ph{aspect-ratio:16/9;background:var(--panel);border:1.5px solid var(--ink);display:flex;flex-direction:column;justify-content:flex-end;padding:14px;position:relative}
-  .card .ph .sq{position:absolute;top:12px;right:12px;width:14px;height:14px;background:var(--red)}
-  .card .ph .plabel{font:700 26px/.95 var(--sans);letter-spacing:-.02em;color:#bdb9ac}
-  .card h3{font:700 28px/1 var(--sans);letter-spacing:-.02em}
-  .card .cdesc{font:400 14px/1.5 var(--sans);color:#3d3a33;flex:1;white-space:pre-line}
-  .card .ctags{display:flex;flex-wrap:wrap;gap:6px}
-  .card .ctag{font:500 9px var(--mono);letter-spacing:.04em;padding:4px 8px;border:1px solid var(--ink)}
-  .card .clink{font:600 12px var(--sans);text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:2px;align-self:flex-start}
-
-  .notice{padding:40px 32px;font:500 13px/1.6 var(--mono);color:var(--dim)}
-  .notice code{background:var(--panel);padding:2px 6px}
-
-  footer{background:var(--ink);color:var(--paper);padding:44px 32px;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:20px}
-  footer .big{font:700 46px/.9 var(--sans);letter-spacing:-.03em}
-  footer .flinks{display:flex;gap:22px;font:500 11px var(--mono);letter-spacing:.08em}
-  footer a{text-decoration:none}
-  footer .flinks a:last-child{color:var(--red)}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -163,6 +70,7 @@
 
 </div>
 
+<script src="common.js"></script>
 <script>
 /* =============================================================
    PROJEKTE PFLEGST DU IN ORDNERN – NICHT MEHR HIER.
@@ -175,39 +83,10 @@
      2. Bilder hineinlegen und "projekt.txt" ausfüllen.
      3. Ordnernamen in "projekte/liste.txt" ergänzen.
 
-   Der Code unten muss normalerweise nicht angefasst werden.
+   esc() und parseProjekt() stehen in "common.js" (wird von dieser
+   Seite und von projekt.html benutzt). Der Code unten muss
+   normalerweise nicht angefasst werden.
    ============================================================= */
-
-function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-
-// Wandelt den Inhalt einer projekt.txt in ein Projekt-Objekt um.
-function parseProjekt(text, folder){
-  const lines = text.split(/\r?\n/);
-  const p = { folder, tags: [], images: [] };
-  let desc = null;
-  for(const line of lines){
-    if(desc !== null){ desc.push(line); continue; }
-    if(/^\s*#/.test(line) || line.trim() === "") continue;
-    const m = line.match(/^\s*([\wäöüÄÖÜ]+)\s*:\s*(.*)$/);
-    if(!m) continue;
-    const key = m[1].toLowerCase();
-    const val = m[2].trim();
-    if(key === "titel") p.title = val;
-    else if(key === "untertitel") p.subtitle = val;
-    else if(key === "kategorie" || key === "kategorien") p.category = val;
-    else if(key === "jahr") p.year = val;
-    else if(key === "tags") p.tags = val.split(",").map(s => s.trim()).filter(Boolean);
-    else if(key === "link") p.link = val;
-    else if(key === "linktext") p.linkText = val;
-    else if(key === "nummer" || key === "num") p.num = val;
-    else if(key === "featured") p.featured = /^(ja|yes|true|1)$/i.test(val);
-    else if(key === "bild" || key === "bilder") p.images = val.split(",").map(s => s.trim()).filter(Boolean).map(b => "projekte/" + folder + "/" + b);
-    else if(key === "beschreibung") desc = [val];
-  }
-  if(desc !== null) p.desc = desc.join("\n").trim();
-  p.image = p.images[0] || "";
-  return p;
-}
 
 const featuredEl = document.getElementById('featured');
 const filterbar  = document.getElementById('filterbar');
@@ -257,26 +136,22 @@ function renderFilters(){
 
 function renderGrid(){
   grid.innerHTML = currentList().map(p => {
-    const thumb = (p.images && p.images.length)
-      ? `<div class="thumb">${p.images.map(src => `<img src="${esc(src)}" alt="${esc(p.title)}" loading="lazy">`).join("")}</div>`
+    const thumb = p.image
+      ? `<div class="thumb"><img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy"></div>`
       : `<div class="ph"><span class="sq"></span><span class="plabel">${esc(p.subtitle||p.title)}</span></div>`;
     const tags = (p.tags||[]).map(t => `<span class="ctag">${esc(t)}</span>`).join("");
-    const link = p.link ? `<a class="clink" href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.linkText||"Ansehen")} →</a>` : "";
     return `
-      <article class="card">
+      <a class="card" href="projekt.html?p=${encodeURIComponent(p.folder)}">
         <div class="top"><span class="n">${esc(p.num||"")}</span><span class="cat">${esc(p.category)} · ${esc(p.year||"")}</span></div>
         ${thumb}
         <h3>${esc(p.title)}</h3>
         <p class="cdesc">${esc(p.desc||"")}</p>
         <div class="ctags">${tags}</div>
-        ${link}
-      </article>`;
+      </a>`;
   }).join("");
 }
 
 function boot(projects){
-  // Automatische Nummerierung in Listen-Reihenfolge (01, 02, ...)
-  projects.forEach((p, i) => { if(!p.num) p.num = String(i+1).padStart(2, "0"); });
   ALL = projects;
   const featured = projects.find(p => p.featured) || projects[0];
   GRID = projects.filter(p => p !== featured);
@@ -287,16 +162,7 @@ function boot(projects){
 
 async function load(){
   try{
-    const listeTxt = await fetch("projekte/liste.txt").then(r => { if(!r.ok) throw 0; return r.text(); });
-    const folders = listeTxt.split(/\r?\n/).map(s => s.trim()).filter(s => s && !s.startsWith("#"));
-    const projects = [];
-    for(const f of folders){
-      try{
-        const txt = await fetch("projekte/" + f + "/projekt.txt").then(r => { if(!r.ok) throw 0; return r.text(); });
-        const p = parseProjekt(txt, f);
-        if(p.title) projects.push(p);
-      }catch(e){ console.warn("Ordner konnte nicht gelesen werden:", f); }
-    }
+    const projects = await loadAllProjects();
     if(!projects.length) throw 0;
     boot(projects);
   }catch(e){
