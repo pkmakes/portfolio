@@ -48,6 +48,56 @@ function showNotFound(){
   detailEl.innerHTML = '<div class="notice">Dieses Projekt konnte nicht geladen werden.<br><br>Entweder stimmt der Ordnername in der Adresse nicht, oder die Seite wurde per <b>Doppelklick</b> (file://) geöffnet – der Browser darf dann keine Ordner-Dateien lesen.<br><br>Öffne die Seite über <b>GitHub Pages</b> oder einen kleinen lokalen Server im Ordner <code>site/</code>:<br><br><code>python -m http.server</code><br><br>und dann <code>http://localhost:8000</code> aufrufen.</div>';
 }
 
+// Baut das Karussell-HTML: 1. Bild sichtbar, restliche Bilder verdeckt.
+// Pfeile/Punkte erscheinen nur, wenn es mehr als ein Bild gibt.
+function buildCarousel(p){
+  if(!(p.images && p.images.length)) return "";
+  const slides = p.images.map((src, i) =>
+    `<img class="cslide${i === 0 ? ' active' : ''}" src="${esc(src)}" alt="${esc(p.title)} – Bild ${i+1} von ${p.images.length}" loading="${i === 0 ? 'eager' : 'lazy'}">`
+  ).join("");
+  if(p.images.length === 1){
+    return `<div class="carousel"><div class="cslides">${slides}</div></div>`;
+  }
+  const dots = p.images.map((_, i) => `<button class="cdot${i === 0 ? ' active' : ''}" type="button" data-i="${i}" aria-label="Bild ${i+1}"></button>`).join("");
+  return `
+    <div class="carousel">
+      <div class="cslides">${slides}</div>
+      <button class="cnav cprev" type="button" aria-label="Vorheriges Bild">‹</button>
+      <button class="cnav cnext" type="button" aria-label="Nächstes Bild">›</button>
+      <span class="ccount">1 / ${p.images.length}</span>
+      <div class="cdots">${dots}</div>
+    </div>`;
+}
+
+// Aktiviert Klick-Navigation, Punkte und Pfeiltasten für ein gerendertes Karussell.
+function initCarousel(){
+  const carousel = detailEl.querySelector('.carousel');
+  if(!carousel) return;
+  const slides = Array.from(carousel.querySelectorAll('.cslide'));
+  const dots = Array.from(carousel.querySelectorAll('.cdot'));
+  const countEl = carousel.querySelector('.ccount');
+  let idx = 0;
+
+  function show(i){
+    idx = (i + slides.length) % slides.length;
+    slides.forEach((s, j) => s.classList.toggle('active', j === idx));
+    dots.forEach((d, j) => d.classList.toggle('active', j === idx));
+    if(countEl) countEl.textContent = (idx + 1) + ' / ' + slides.length;
+  }
+
+  carousel.querySelector('.cprev')?.addEventListener('click', () => show(idx - 1));
+  carousel.querySelector('.cnext')?.addEventListener('click', () => show(idx + 1));
+  dots.forEach(d => d.addEventListener('click', () => show(Number(d.dataset.i))));
+
+  if(slides.length > 1){
+    carousel.tabIndex = 0;
+    carousel.addEventListener('keydown', e => {
+      if(e.key === 'ArrowLeft'){ show(idx - 1); }
+      if(e.key === 'ArrowRight'){ show(idx + 1); }
+    });
+  }
+}
+
 function renderDetail(p){
   document.title = p.title + ' – Philipp Kautz';
   const descMeta = document.getElementById('pagedesc');
@@ -55,9 +105,7 @@ function renderDetail(p){
 
   const tags = (p.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join("");
   const cta = p.link ? `<a class="cta" href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.linkText||"Ansehen")} →</a>` : "";
-  const gallery = (p.images && p.images.length)
-    ? `<div class="gallery">${p.images.map(src => `<img src="${esc(src)}" alt="${esc(p.title)}" loading="lazy">`).join("")}</div>`
-    : "";
+  const carousel = buildCarousel(p);
 
   detailEl.innerHTML = `
     <div class="detail row-b">
@@ -68,7 +116,9 @@ function renderDetail(p){
       <p class="desc">${esc(p.desc||"")}</p>
       ${cta}
     </div>
-    ${gallery}`;
+    ${carousel}`;
+
+  initCarousel();
 }
 
 async function load(){
