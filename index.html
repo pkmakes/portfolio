@@ -111,6 +111,14 @@ function renderFeatured(p){
       ${cta}
     </div>
     <div class="img">${img}</div>`;
+
+  // Ganze Kachel klickbar machen (führt zur Projektseite) – aber echte Links
+  // innerhalb der Kachel (z.B. der externe CTA-Link) sollen normal funktionieren.
+  featuredEl.style.cursor = "pointer";
+  featuredEl.onclick = (e) => {
+    if(e.target.closest("a")) return;
+    window.location.href = "projekt.html?p=" + encodeURIComponent(p.folder);
+  };
 }
 
 function currentList(){
