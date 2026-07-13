@@ -3,8 +3,8 @@ untertitel: Web-App zur Messung von Zykluszeiten in Prozessen
 kategorie: Software
 jahr: 2026
 tags: Lean Management, Software
-link: 
-linktext: Code ansehen
+link: https://pkmakes.github.io/cyclanyzer/
+linktext: CYCLANYZER hier ausprobieren
 featured: nein
 bilder: Objekt 0.webp, Objekt 1.png, Objekt 2.png, Objekt 3.png, Objekt 4.png, Objekt 5.png
 beschreibung: Übersichtliche Webapp zur einfachen Messung von Zykluszeiten bei der Prozessanalyse. Intuitive Bedienung, ermöglicht das Hinzufügen eigener Kategorien, integrierte detaillierte Auswertungen und den einfachen CSV-Export aller Daten.

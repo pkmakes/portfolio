@@ -3,8 +3,8 @@ untertitel: WebApp für die KATA-Methode
 kategorie: Software
 jahr: 2025
 tags: App, Software, Lean Management
-link: 
-linktext: Details
+link: https://kataquest.com
+linktext: KATAQUEST hier ausprobieren
 featured: nein
 bilder: Objekt 0.jpeg, Objekt 1.jpeg, Objekt 2.jpeg, Objekt 3.jpeg, Objekt 4.jpeg, Objekt 5.jpeg, Objekt 6.jpeg, Objekt 7.jpeg
 beschreibung: WebApp die eine ganzheitliche Platform zur Arbeit mit der Toyota KATA bietet. Intuitives Storyboard, Auswertbarkeit von Themen, Tracking von Fortschritt und Gamification.
