@@ -1,4 +1,4 @@
-titel: CYCLANZYER
+titel: CYCLANYZER
 untertitel: Web-App zur Messung von Zykluszeiten in Prozessen
 kategorie: Software
 jahr: 2026

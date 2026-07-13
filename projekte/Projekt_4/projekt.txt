@@ -1,10 +1,10 @@
-titel: Projekttitel
-untertitel: Grafik / Layout
-kategorie: Design
-jahr: 2024
-tags: Branding, Layout, Typografie
-link: 
-linktext: Ansehen
+titel: RUNAROUND
+untertitel: Web-App zur Aufnahme und Analyse von Laufwegen
+kategorie: Software
+jahr: 2026
+tags: Lean Management, Software
+link: https://pkmakes.github.io/runaround/
+linktext: RUNAROUND hier ausprobieren
 featured: nein
-bilder: 
-beschreibung: Platzhalter – Gestaltungsprojekt wie Branding, Layout oder Illustration. Kurz Ziel und Ergebnis beschreiben.
+bilder: Objekt 0.webp, Objekt 1.webp, Objekt 2.webp, Objekt 3.webp, Objekt 4.jpeg, Objekt 5.jpeg, Objekt 6.webp
+beschreibung: Webapp zur einfachen Aufnahme und Analyse von Arbeitsschritten. Ermöglicht das gleichzeitige Erstellen eines Laufweg-/ Spaghetti-Diagramms und die Aufnahme der Arbeitsschritte. Die Visualisierung der Laufwege zeigt Probleme auf, der Export in Excel ermöglicht die Diskussion der Arbeitsschritte mit dem Team, Festlegen eines Standardablaufs und eine einfache Dokumentation.
